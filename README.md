@@ -4,6 +4,8 @@
 
 Allow users to define scheduled announcements
 
+![Screen shot](/docs/imgs/screen.png)
+
 ## Requirements
 
 Compatibility with core CKAN versions:
@@ -47,7 +49,7 @@ To install ckanext-announcements:
 
 ## Config settings
 
-`ckanext.unhcr.limit_announcements` (default: 50)
+`ckanext.announcements.limit_announcements` (default: 50)
 > Limit for the announcement list
 
 ## Developer installation

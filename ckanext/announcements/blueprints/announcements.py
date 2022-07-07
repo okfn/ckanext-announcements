@@ -1,6 +1,6 @@
 from flask import Blueprint
 import ckan.plugins.toolkit as toolkit
-from ckanext.unhcr.utils import require_user
+
 
 announcements_blueprint = Blueprint(
     'announcements',
@@ -9,7 +9,6 @@ announcements_blueprint = Blueprint(
 )
 
 
-@require_user
 def index():
     try:
         toolkit.check_access('sysadmin', {'user': toolkit.c.user})
