@@ -1,0 +1,14 @@
+# announcements-js:
+#   filter: rjsmin
+#   output: ckanext-announcements/%(version)s-announcements.js
+#   contents:
+#     - js/announcements.js
+#   extra:
+#     preload:
+#       - base/main
+
+# announcements-css:
+#   filter: cssrewrite
+#   output: ckanext-announcements/%(version)s-announcements.css
+#   contents:
+#     - css/announcements.css
