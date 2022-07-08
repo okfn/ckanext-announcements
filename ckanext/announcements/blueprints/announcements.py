@@ -1,5 +1,8 @@
 from flask import Blueprint
-import ckan.plugins.toolkit as toolkit
+from ckan import logic, model
+from ckan.common import g
+from ckan.lib import base
+from ckan.plugins import toolkit
 
 
 announcements_blueprint = Blueprint(
@@ -9,12 +12,16 @@ announcements_blueprint = Blueprint(
 )
 
 
-def index():
+@announcements_blueprint.before_request
+def before_request():
     try:
-        toolkit.check_access('sysadmin', {'user': toolkit.c.user})
-    except toolkit.NotAuthorized:
-        return toolkit.abort(403, 'Not authorized to manage Announcements')
+        context = dict(model=model, user=g.user, auth_user_obj=g.userobj)
+        logic.check_access('sysadmin', context)
+    except logic.NotAuthorized:
+        base.abort(403, ('Need to be system administrator to administer'))
 
+
+def index():
     return toolkit.render('admin/announcements.html')
 
 
