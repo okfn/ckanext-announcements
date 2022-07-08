@@ -1,0 +1,12 @@
+#new-announcement {
+    text-align: right;
+    margin-bottom: 7px;
+}
+
+.announcement-edit-btn, .announcement-delete-btn {
+    margin: 3px;
+}
+
+.announcement-msg-column {
+    width: 50%;
+}

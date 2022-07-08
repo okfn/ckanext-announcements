@@ -2,9 +2,15 @@
 
 {% set messages = h.get_announcements() %}
 
-{% block primary_content_inner %}
-<h2>{{ _('Announcement to all users') }}</h2>
+{% block styles %}
+  {{ super() }}
+  <link rel="stylesheet" href="/css/announcement.css" />
+{% endblock %}
 
+{% block primary_content_inner %}
+<h2>{{ _('Announcements to all users') }}</h2>
+
+<div id="new-announcement">
 <a
     href="#system-message-new"
     role="button"
@@ -13,11 +19,13 @@
     data-toggle="modal"
     data-target="#system-message-new"
   >Schedule new message</a>
+</div>
 
+<div id="announcement-table">
 <table id="system-messages-list" class="table table-header table-hover table-bordered table-responsive">
   <thead>
     <tr>
-      <th>Message</th>
+      <th class="announcement-msg-column">Message</th>
       <th>From</th>
       <th>To</th>
       <th>Actions</th>
@@ -30,13 +38,18 @@
       <td>{{ h.render_datetime(message.from_date, with_hours=True) }}</td>
       <td>{{ h.render_datetime(message.to_date, with_hours=True) }}</td>
       <td>
-        <a href="#system-message-{{ message.id }}" role="button" class="btn btn-info"    title="edit"   data-toggle="modal" data-target="#system-message-{{ message.id }}">edit</a>
-        <a href="#system-message-{{ message.id }}" role="button" class="btn btn-warning" title="delete" data-toggle="modal" data-target="#system-message-{{ message.id }}">delete</a>
+        <a href="#system-message-edit-{{ message.id }}" role="button" class="btn btn-info announcement-edit-btn" title="edit"   data-toggle="modal" data-target="#system-message-edit-{{ message.id }}">
+          <i class="fa fa-edit"></i>
+        </a>
+        <a href="#system-message-delete-{{ message.id }}" role="button" class="btn btn-danger announcement-delete-btn" title="delete" data-toggle="modal" data-target="#system-message-delete-{{ message.id }}">
+          <i class="fa fa-trash"></i>
+        </a>
       </td>
     </tr>
     {% endfor %}
   </tbody>
 </table>
+</div>
 {% endblock %}
 
 {% block body_extras %}
@@ -75,7 +88,7 @@
 
 {% for message in messages %}
 
-<div id="system-message-{{ message.id }}" class="modal fade" tabindex="-1" role="dialog">
+<div id="system-message-edit-{{ message.id }}" class="modal fade" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
 
     <div class="modal-content">
@@ -105,6 +118,39 @@
 
   </div>
 </div>
+
+
+<div id="system-message-delete-{{ message.id }}" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3>Are you sure you want to delete?</h3>
+      </div>
+
+      <div class="modal-body">
+        <p>{{ message.message }}</p>
+        <p>Status <b>{{ message.status }}</b></p>
+        <div style="max-height: 400px; overflow-y: scroll;">
+          <h4>Scope</h4>
+          <ul>
+            <li>From: <b>{{ message.from_date }}</b></li>
+            <li>To: <b>{{ message.to_date }}</b></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Delete</button>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
 {% endfor %}
 
 {% endblock %}
