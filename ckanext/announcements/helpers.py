@@ -13,13 +13,13 @@ def get_announcements():
     # TODO this should be paginated
     limit = toolkit.config.get('ckanext.announcements.limit_announcements', 50)
     # display messages up to 3 days after they disappeared.
-    until = datetime.datetime.utcnow() + datetime.timedelta(days=3)
+    until = datetime.datetime.utcnow() - datetime.timedelta(days=3)
     messages = model.Session.query(
         Announcement
     ).filter_by(
         status="active"
     ).filter(
-        Announcement.to_date < until
+        Announcement.to_date > until
     ).order_by(
         Announcement.timestamp.desc()
     ).limit(limit).all()
