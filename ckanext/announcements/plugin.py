@@ -38,6 +38,7 @@ class announcementsPlugin(plugins.SingletonPlugin):
         functions = {
             'announcement_create': auth.announcement_create,
             'announcement_update': auth.announcement_update,
+            'announcement_delete': auth.announcement_delete,
             'announcement_show': auth.announcement_show
         }
         return functions
@@ -48,6 +49,7 @@ class announcementsPlugin(plugins.SingletonPlugin):
         functions = {
             'announcement_create': actions.announcement_create,
             'announcement_update': actions.announcement_update,
+            'announcement_delete': actions.announcement_delete,
             'announcement_show': actions.announcement_show
         }
         return functions

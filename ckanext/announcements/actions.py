@@ -34,10 +34,24 @@ def announcement_update(context, data_dict):
     announcement.to_date = data_dict['to_date']
     announcement.message = data_dict['message']
 
-    model.Session.commit()
-    model.Session.refresh(announcement)
+    m.Session.commit()
+    m.Session.refresh(announcement)
     
     return announcement.dictize()
+
+
+def announcement_delete(context, data_dict):
+    toolkit.check_access('announcement_delete', context, data_dict)
+    m = context.get('model', model)
+    
+    announcement = m.Session.query(Announcement).get(data_dict['id'])
+    if not announcement:
+        raise toolkit.ObjectNotFound("Announcement not found")
+
+    m.Session.delete(announcement)
+    m.Session.commit()
+    
+    return
 
 
 @toolkit.side_effect_free

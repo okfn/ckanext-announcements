@@ -13,5 +13,12 @@ def announcement_update(context, data_dict):
     user_obj = context.get('auth_user_obj')
     return {'success': user_obj.sysadmin}
 
+
+def announcement_delete(context, data_dict):
+    """ Only sysadmins are allowed """
+    user_obj = context.get('auth_user_obj')
+    return {'success': user_obj.sysadmin}
+
+
 def announcement_show(context, data_dict):
     return {'success': True}

@@ -48,7 +48,7 @@ def create():
 
 
 def update():
-    """ Create (POST) a new announcement """
+    """ Updates an announcement """
     
     user_obj = toolkit.c.userobj
     announ_id = toolkit.request.form.get('id')
@@ -74,6 +74,24 @@ def update():
     return toolkit.redirect_to('announcements.index')
 
 
+def delete():
+    """ Delete an announcement """
+    
+    user_obj = toolkit.c.userobj
+    announ_id = toolkit.request.form.get('id')
+
+    try:
+        toolkit.get_action('announcement_delete')(
+            {'user': user_obj.name},
+            {'id': announ_id}
+        )
+    except toolkit.ValidationError as e:
+        message = 'Error deleting announcement: {}.'.format(e)
+        toolkit.h.flash_error(message)
+
+    return toolkit.redirect_to('announcements.index')
+
+
 announcements_blueprint.add_url_rule(
     rule=u'/',
     view_func=index,
@@ -91,6 +109,13 @@ announcements_blueprint.add_url_rule(
 announcements_blueprint.add_url_rule(
     rule=u'/update',
     view_func=update,
+    methods=['POST',],
+    strict_slashes=False,
+)
+
+announcements_blueprint.add_url_rule(
+    rule=u'/delete',
+    view_func=delete,
     methods=['POST',],
     strict_slashes=False,
 )
