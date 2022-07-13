@@ -22,6 +22,24 @@ def announcement_create(context, data_dict):
     return announcement.dictize()
 
 
+def announcement_update(context, data_dict):
+    toolkit.check_access('announcement_update', context, data_dict)
+    m = context.get('model', model)
+    
+    announcement = m.Session.query(Announcement).get(data_dict['id'])
+    if not announcement:
+        raise toolkit.ObjectNotFound("Announcement not found")
+    
+    announcement.from_date = data_dict['from_date']
+    announcement.to_date = data_dict['to_date']
+    announcement.message = data_dict['message']
+
+    model.Session.commit()
+    model.Session.refresh(announcement)
+    
+    return announcement.dictize()
+
+
 @toolkit.side_effect_free
 def announcement_show(context, data_dict):
     m = context.get('model', model)

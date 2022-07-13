@@ -94,28 +94,29 @@
   <div class="modal-dialog" role="document">
 
     <div class="modal-content">
-
+      <form method="POST" action="{% url_for 'announcements.update' %}">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         <h3>Message data</h3>
       </div>
 
       <div class="modal-body">
-        <p>{{ message.message }}</p>
+        <input type="hidden" name="id" value="{{ message.id }}"/>
+        <textarea name="message">{{ message.message }}</textarea>
         <p>Status <b>{{ message.status }}</b></p>
         <div style="max-height: 400px; overflow-y: scroll;">
           <h4>Scope</h4>
           <ul>
-            <li>From: <b>{{ message.from_date }}</b></li>
-            <li>To: <b>{{ message.to_date }}</b></li>
+            <li>From: <input name="from_date" type="datetime-local" value="{{ message.from_date.isoformat() }}"/></li>
+            <li>To: <input name="to_date" type="datetime-local" value="{{ message.to_date.isoformat() }}"/></li>
           </ul>
         </div>
       </div>
 
       <div class="modal-footer">
-        <button class="btn" data-dismiss="modal" aria-hidden="true">Done</button>
+        <button type="submit" class="btn" aria-hidden="true">Done</button>
       </div>
-
+    </form>
     </div>
 
   </div>
