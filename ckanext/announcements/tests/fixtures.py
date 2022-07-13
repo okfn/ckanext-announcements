@@ -1,5 +1,4 @@
 import contextlib
-import sqlalchemy as sa
 import pytest
 
 from ckan.cli.db import _resolve_alembic_config
