@@ -8,10 +8,10 @@ from ckanext.announcements.models import Announcement
 log = logging.getLogger(__name__)
 
 
-def get_announcements():
+def get_announcements(limit=50):
     """ Get a list of Announcements """
     # TODO this should be paginated
-    limit = toolkit.config.get('ckanext.announcements.limit_announcements', 50)
+    limit = toolkit.config.get('ckanext.announcements.limit_announcements', limit)
     # display messages up to 3 days after they disappeared.
     until = datetime.datetime.utcnow() - datetime.timedelta(days=3)
     messages = model.Session.query(

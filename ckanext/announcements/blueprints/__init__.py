@@ -1,1 +1,0 @@
-from .announcements import announcements_blueprint

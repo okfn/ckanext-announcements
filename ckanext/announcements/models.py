@@ -32,3 +32,7 @@ class Announcement(Base):
         nullable=False,
     )
     extras = Column(MutableDict.as_mutable(JSONB), nullable=True)
+
+    def dictize(self):
+        dct = {k:v for k,v in self.__dict__.items() if not k.startswith('_')}
+        return dct
