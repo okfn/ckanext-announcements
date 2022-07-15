@@ -1,6 +1,7 @@
+from datetime import datetime, timedelta
 import pytest
 
-from ckanext.announcements.helpers import get_announcements
+from ckanext.announcements.helpers import get_all_announcements, get_public_announcements
 from ckanext.announcements.tests import factories
 
 
@@ -8,17 +9,29 @@ from ckanext.announcements.tests import factories
 class TestAnnouncements:
 
     def setup(self):
-        self.announcement = factories.Announcement(
-            message='This is an announcement message'
+        self.old_announcement = factories.Announcement(
+            message='This is an old message',
+            from_date=datetime.now() - timedelta(days=7),
+            to_date=datetime.now() - timedelta(days=6),
+        )
+        self.active_announcement = factories.Announcement(
+            message='This should be a public message',
+            from_date=datetime.now() - timedelta(days=1),
+            to_date=datetime.now() + timedelta(days=1),
         )
 
     def test_announcement_saved(self):
         """ Test single announcement saved correctly """
-        assert self.announcement.message == 'This is an announcement message'
-        assert self.announcement.status == 'active'
+        assert self.old_announcement.message == 'This is an old message'
+        assert self.old_announcement.status == 'active'
 
-    def test_get_announcements_helper(self):
-        """ Test helper """
-        ga = get_announcements()
+    def test_get_all_announcements_helper(self):
+        """ Test all messages helper """
+        ga = get_all_announcements()
+        assert len(ga) == 2
+
+    def test_get_public_announcements_helper(self):
+        """ Test public messages helper """
+        ga = get_public_announcements()
         assert len(ga) == 1
-
+        assert ga[0].message == 'This should be a public message'

@@ -1,11 +1,6 @@
 {% extends "admin/base.html" %}
 
-{% set messages = h.get_announcements() %}
-
-{% block styles %}
-  {{ super() }}
-  <link rel="stylesheet" href="/css/announcement.css" />
-{% endblock %}
+{% set messages = h.get_all_announcements() %}
 
 {% block primary_content_inner %}
 <h2>{{ _('Announcements to all users') }}</h2>

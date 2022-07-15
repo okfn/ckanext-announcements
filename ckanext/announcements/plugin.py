@@ -22,7 +22,8 @@ class announcementsPlugin(plugins.SingletonPlugin):
 
     def get_helpers(self):
         return {
-            'get_announcements': helpers.get_announcements,
+            'get_all_announcements': helpers.get_all_announcements,
+            'get_public_announcements': helpers.get_public_announcements,
         }
 
     # IBlueprint

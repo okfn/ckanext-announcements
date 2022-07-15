@@ -1,0 +1,15 @@
+{% ckan_extends %}
+
+{% block header_wrapper %}
+
+  <div class="announcement-container">
+    {% for announcement in h.get_public_announcements() %}
+      <div class="announcement">
+          {{ announcement.message }}
+      </div>
+    {% endfor %}
+  </div>
+
+  {{ super() }}
+
+{% endblock %}
