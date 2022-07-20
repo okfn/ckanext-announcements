@@ -13,10 +13,13 @@ Public
 }
 
 .announcement-container {
-    width: 90%;
-    /* display: flex;
-    align-items: center;
-    justify-content: center; */
+    width: 78%;
+}
+
+.close-announcement {
+    float: right;
+    padding: 0px 4px;
+    background-color: rgb(4, 100, 114);
 }
 
 /*
