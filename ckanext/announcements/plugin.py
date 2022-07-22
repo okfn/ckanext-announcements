@@ -15,7 +15,7 @@ class announcementsPlugin(plugins.SingletonPlugin):
     def update_config(self, config_):
         toolkit.add_template_directory(config_, 'templates')
         toolkit.add_public_directory(config_, 'public')
-        toolkit.add_resource('fanstatic', 'announcements')
+        toolkit.add_resource('assets', 'announcements')
         toolkit.add_ckan_admin_tab(config_, 'announcements.index', 'Announcements', icon='bell')
 
     # ITemplateHelpers
