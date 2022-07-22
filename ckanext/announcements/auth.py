@@ -2,6 +2,7 @@
 Announcement auth functions
 """
 
+
 def announcement_create(context, data_dict):
     """ Only sysadmins are allowed """
     user_obj = context.get('auth_user_obj')

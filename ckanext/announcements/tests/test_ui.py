@@ -1,6 +1,4 @@
 import pytest
-
-from ckanext.announcements.tests import factories
 from ckantoolkit.tests import factories as core_factories
 
 

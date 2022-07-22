@@ -20,7 +20,7 @@ def index():
 
 def create():
     """ Create (POST) a new announcement """
-    
+
     user_obj = toolkit.c.userobj
     user_creator_id = user_obj.id
     from_date = toolkit.request.form.get('from_date')
@@ -29,7 +29,7 @@ def create():
 
     new_announcements_data = {
         'timestamp': datetime.now(),
-        'user_creator_id':user_creator_id,
+        'user_creator_id': user_creator_id,
         'from_date': datetime.fromisoformat(from_date),
         'to_date': datetime.fromisoformat(to_date),
         'message': message,
@@ -49,7 +49,7 @@ def create():
 
 def update():
     """ Updates an announcement """
-    
+
     user_obj = toolkit.c.userobj
     announ_id = toolkit.request.form.get('id')
     from_date = toolkit.request.form.get('from_date')
@@ -76,7 +76,7 @@ def update():
 
 def delete():
     """ Delete an announcement """
-    
+
     user_obj = toolkit.c.userobj
     announ_id = toolkit.request.form.get('id')
 
@@ -95,27 +95,27 @@ def delete():
 announcements_blueprint.add_url_rule(
     rule=u'/',
     view_func=index,
-    methods=['GET',],
+    methods=['GET', ],
     strict_slashes=False,
 )
 
 announcements_blueprint.add_url_rule(
     rule=u'/new',
     view_func=create,
-    methods=['POST',],
+    methods=['POST', ],
     strict_slashes=False,
 )
 
 announcements_blueprint.add_url_rule(
     rule=u'/update',
     view_func=update,
-    methods=['POST',],
+    methods=['POST', ],
     strict_slashes=False,
 )
 
 announcements_blueprint.add_url_rule(
     rule=u'/delete',
     view_func=delete,
-    methods=['POST',],
+    methods=['POST', ],
     strict_slashes=False,
 )

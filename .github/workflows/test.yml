@@ -30,6 +30,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+
+    - name: Flake8
+      run: |
+        pip install flake8
+        flake8 . --count --max-complexity=10 --max-line-length=127 --statistics
+
     - name: Install requirements
       # Install any extra requirements your extension has here (dev requirements, other extensions etc)
       run: |
@@ -44,6 +50,7 @@ jobs:
 
         ckan -c test.ini db init
         ckan -c test.ini db upgrade -p announcements
+
     - name: Run tests
       run: pytest --ckan-ini=test.ini --cov=ckanext.announcements --disable-warnings ckanext/announcements
 
