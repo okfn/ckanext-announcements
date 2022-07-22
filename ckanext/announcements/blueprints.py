@@ -1,6 +1,6 @@
 from datetime import datetime
+from functools import wraps
 from flask import Blueprint
-from ckan.lib import base
 from ckan.plugins import toolkit
 
 
@@ -11,16 +11,30 @@ announcements_blueprint = Blueprint(
 )
 
 
+def require_sysadmin(func):
+    '''
+    Decorator for flask view functions. Returns 403 response if the user is not a sysadmin
+    '''
+    @wraps(func)
+    def view_wrapper(*args, **kwargs):
+        if (not hasattr(toolkit.c, "userobj") or
+                not toolkit.c.userobj or
+                not toolkit.c.userobj.sysadmin):
+            return toolkit.abort(403, "You are not authorized to access this page")
+        return func(*args, **kwargs)
+    return view_wrapper
+
+
+@require_sysadmin
 def index():
     """ Get the Announcements home page """
-    if not toolkit.c.userobj.sysadmin:
-        base.abort(403, ('Need to be system administrator to administer'))
     return toolkit.render('admin/announcements.html')
 
 
+@require_sysadmin
 def create():
     """ Create (POST) a new announcement """
-    
+
     user_obj = toolkit.c.userobj
     user_creator_id = user_obj.id
     from_date = toolkit.request.form.get('from_date')
@@ -29,7 +43,7 @@ def create():
 
     new_announcements_data = {
         'timestamp': datetime.now(),
-        'user_creator_id':user_creator_id,
+        'user_creator_id': user_creator_id,
         'from_date': datetime.fromisoformat(from_date),
         'to_date': datetime.fromisoformat(to_date),
         'message': message,
@@ -47,9 +61,10 @@ def create():
     return toolkit.redirect_to('announcements.index')
 
 
+@require_sysadmin
 def update():
     """ Updates an announcement """
-    
+
     user_obj = toolkit.c.userobj
     announ_id = toolkit.request.form.get('id')
     from_date = toolkit.request.form.get('from_date')
@@ -76,7 +91,7 @@ def update():
 
 def delete():
     """ Delete an announcement """
-    
+
     user_obj = toolkit.c.userobj
     announ_id = toolkit.request.form.get('id')
 
