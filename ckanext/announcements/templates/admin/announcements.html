@@ -29,7 +29,7 @@
   <tbody>
     {% for message in messages %}
     <tr>
-      <td>{{ message.message }}</td>
+      <td>{{ h.render_markdown(message.message) }}</td>
       <td>{{ h.render_datetime(message.from_date, with_hours=True) }}</td>
       <td>{{ h.render_datetime(message.to_date, with_hours=True) }}</td>
       <td>
@@ -130,7 +130,7 @@
 
       <div class="modal-body">
         <input type="hidden" name="id" value="{{ message.id }}"/>
-        <p>{{ message.message }}</p>
+        <p>{{ h.render_markdown(message.message) }}</p>
         <p>Status <b>{{ message.status }}</b></p>
         <div style="max-height: 400px; overflow-y: scroll;">
           <h4>Scope</h4>
