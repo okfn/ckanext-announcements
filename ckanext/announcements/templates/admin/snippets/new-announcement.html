@@ -1,0 +1,40 @@
+<div id="system-message-new" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+  
+      <div class="modal-content">
+        <form method="POST" action="{% url_for 'announcements.create' %}">
+  
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3>New Announcement</h3>
+        </div>
+  
+        <div class="modal-body">
+            <div class="control-group announcement-form-field">
+                <label for="message">Announcement message</label>
+                <textarea name="message" class="announcement-message-input"></textarea>
+                <small>Markdown allowed</small>
+            </div>
+
+            <h4>Time Period</h4>
+
+            <div class="control-group announcement-form-field">
+                <label for="from_date">From</label>
+                <input name="from_date" type="datetime-local" class="announcement-date-input"/>
+            </div>
+
+            <div class="control-group announcement-form-field">
+                <label for="to_date">To</label>
+                <input name="to_date" type="datetime-local" class="announcement-date-input"/>
+            </div>
+
+            
+        </div>
+  
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" aria-hidden="true">Schedule message</button>
+        </div>
+        </form>
+      </div>
+    </div>
+</div>
