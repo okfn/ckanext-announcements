@@ -62,6 +62,15 @@ do:
     python setup.py develop
     pip install -r dev-requirements.txt
 
+### Activate pre-commits
+
+There are github actions to check code with `flake8` and `black` so
+it will be usefull to activate pre-commits
+
+```
+pip install pre-commit
+pre-commit install
+```
 
 ## Tests
 
