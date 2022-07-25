@@ -16,7 +16,7 @@ Base = declarative_base(metadata=metadata)
 
 
 class Announcement(Base):
-    __tablename__ = u'announcements'
+    __tablename__ = "announcements"
 
     id = Column(UnicodeText, primary_key=True, default=make_uuid)
     timestamp = Column(DateTime, default=datetime.datetime.utcnow, nullable=False)
@@ -27,12 +27,12 @@ class Announcement(Base):
     message = Column(UnicodeText, nullable=True)
 
     status = Column(
-        Enum('draft', 'active', 'deleted', name='announcements_status_enum'),
-        default='draft',
+        Enum("draft", "active", "deleted", name="announcements_status_enum"),
+        default="draft",
         nullable=False,
     )
     extras = Column(MutableDict.as_mutable(JSONB), nullable=True)
 
     def dictize(self):
-        dct = {k: v for k, v in self.__dict__.items() if not k.startswith('_')}
+        dct = {k: v for k, v in self.__dict__.items() if not k.startswith("_")}
         return dct

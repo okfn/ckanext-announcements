@@ -18,8 +18,8 @@ def _repo_for_plugin(plugin):
 
 
 def _apply_alembic_migrations():
-    with _repo_for_plugin('announcements') as repo:
-        repo.upgrade_db('head')
+    with _repo_for_plugin("announcements") as repo:
+        repo.upgrade_db("head")
 
 
 @pytest.fixture
