@@ -110,27 +110,27 @@ def delete():
 announcements_blueprint.add_url_rule(
     rule=u'/',
     view_func=index,
-    methods=['GET',],
+    methods=['GET', ],
     strict_slashes=False,
 )
 
 announcements_blueprint.add_url_rule(
     rule=u'/new',
     view_func=create,
-    methods=['POST',],
+    methods=['POST', ],
     strict_slashes=False,
 )
 
 announcements_blueprint.add_url_rule(
     rule=u'/update',
     view_func=update,
-    methods=['POST',],
+    methods=['POST', ],
     strict_slashes=False,
 )
 
 announcements_blueprint.add_url_rule(
     rule=u'/delete',
     view_func=delete,
-    methods=['POST',],
+    methods=['POST', ],
     strict_slashes=False,
 )

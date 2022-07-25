@@ -1,0 +1,8 @@
+<div class="announcement-container">
+    {% for announcement in h.get_public_announcements() %}
+        <div class="announcement">
+            {{ h.render_markdown(announcement.message) }}
+            <button type="button" class="btn-close close-announcement" onclick="this.parentNode.remove();">X</button>
+        </div>
+    {% endfor %}
+</div>
