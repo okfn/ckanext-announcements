@@ -28,8 +28,8 @@ def create():
     new_announcements_data = {
         "timestamp": datetime.now(),
         "user_creator_id": user_creator_id,
-        "from_date": datetime.fromisoformat(from_date),
-        "to_date": datetime.fromisoformat(to_date),
+        "from_date": from_date,
+        "to_date": to_date,
         "message": message,
         "status": "active",
     }
@@ -38,7 +38,8 @@ def create():
             {"user": user_obj.name}, new_announcements_data
         )
     except toolkit.ValidationError as e:
-        message = "Error creating new announcement: {}.".format(e)
+        summary = ", ".join([v[0] for k, v in e.error_dict.items()])
+        message = "Error creating new announcement: {}.".format(summary)
         toolkit.h.flash_error(message)
 
     return toolkit.redirect_to("announcements.index")
@@ -55,8 +56,8 @@ def update():
 
     announcements_data = {
         "id": announ_id,
-        "from_date": datetime.fromisoformat(from_date),
-        "to_date": datetime.fromisoformat(to_date),
+        "from_date": from_date,
+        "to_date": to_date,
         "message": message,
     }
     try:
@@ -64,7 +65,8 @@ def update():
             {"user": user_obj.name}, announcements_data
         )
     except toolkit.ValidationError as e:
-        message = "Error updating announcement: {}.".format(e)
+        summary = ", ".join([v[0] for _, v in e.error_dict.items()])
+        message = "Error updating announcement: {}.".format(summary)
         toolkit.h.flash_error(message)
 
     return toolkit.redirect_to("announcements.index")

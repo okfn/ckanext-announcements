@@ -3,3 +3,12 @@ announcements-css:
   output: ckanext-announcements/%(version)s-announcements.css
   contents:
     - css/announcements.css
+
+announcements-js:
+  filter: rjsmin
+  output: ckanext-announcements/%(version)s-announcements.js
+  contents:
+    - js/announcements.js
+  extra:
+    preload:
+      - base/main

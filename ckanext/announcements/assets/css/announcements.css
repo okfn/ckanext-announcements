@@ -26,3 +26,13 @@ Private
 .announcement-msg-column {
     width: 50%;
 }
+
+.announcement-form-error {
+    color: rgb(115, 8, 8);
+    width: 100%;
+    background-color: #ff000022;
+    font-weight: bold;
+    display: none;
+    padding: 7px;
+    margin: 7px;
+}
