@@ -1,3 +1,5 @@
+{% import 'macros/form.html' as form %}
+
 <div id="system-message-new" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
   
@@ -10,24 +12,24 @@
         </div>
   
         <div class="modal-body">
-            <div class="control-group announcement-form-field">
-                <label for="message">Announcement message</label>
-                <textarea name="message" class="announcement-message-input"></textarea>
-                <small>Markdown allowed</small>
-            </div>
+
+          {{ form.markdown('message', id='field-message', label=_('Announcement message')) }}
 
             <h4>Time Period</h4>
 
-            <div class="control-group announcement-form-field">
-                <label for="from_date">From</label>
-                <input name="from_date" type="datetime-local" class="announcement-date-input"/>
+            <div class="form-group">
+              <label for="from_date">From</label>
+              <div class="controls ">
+              <input name="from_date" type="datetime-local"/>
+              </div>
             </div>
 
-            <div class="control-group announcement-form-field">
-                <label for="to_date">To</label>
-                <input name="to_date" type="datetime-local" class="announcement-date-input"/>
+            <div class="form-group">
+              <label for="to_date">To</label>
+              <div class="controls ">
+              <input name="to_date" type="datetime-local"/>
+              </div>
             </div>
-
             
         </div>
   

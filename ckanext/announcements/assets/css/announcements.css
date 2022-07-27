@@ -26,18 +26,3 @@ Private
 .announcement-msg-column {
     width: 50%;
 }
-
-.announcement-message-input {
-    padding: 8px;
-    width: 100%;
-    margin: 5px;
-}
-
-.announcement-date-input {
-    padding: 7px;
-    max-width: 3px 7px;
-}
-
-.announcement-form-field {
-    margin-top: 5px;
-}
