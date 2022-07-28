@@ -1,8 +1,11 @@
-<div class="announcement-container">
+<div class="announcements-container container">
     {% for announcement in h.get_public_announcements() %}
-        <div class="announcement">
+        <div class="alert alert-warning alert-dismissible announcement" role="alert" >
+           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			    <span aria-hidden="true">&times;</span>
+			  </button>
+
             {{ h.render_markdown(announcement.message) }}
-            <button type="button" class="btn-close close-announcement" onclick="this.parentNode.remove();">X</button>
-        </div>
+           </div>
     {% endfor %}
 </div>
