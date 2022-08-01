@@ -1,4 +1,11 @@
 # Changelog
 
+## 0.0.3 - 2022-08-01
+New features:
+ - Validate announcement forms
+ - Improve style for announcement forms
+ - Add flake8 and black checks for GiyHub acvtions and internally, as pre-commit hooks
+ - Allow markdown for announcements
+
 ## 0.0.2 - 2022-07-20
 First version released
