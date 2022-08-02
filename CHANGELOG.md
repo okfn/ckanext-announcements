@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.0.3 - 2022-08-01
+## 0.0.4 - 2022-08-02
 New features:
  - Validate announcement forms
  - Improve style for announcement forms
