@@ -4,7 +4,7 @@ $( document ).ready(function() {
         $this = $(this);
         $form = $(e.target).parents('form');
         errors = [];
-        $message = $form.find('.announcement-message-input');
+        $message = $form.find('.announcement-message-input textarea');
         if (! $message.val()) {
             errors.push('Error, a "message" is required');
         }
