@@ -2,13 +2,22 @@
 from setuptools import setup, find_packages
 from codecs import open  # To use a consistent encoding
 from os import path
-from ckanext.announcements import __VERSION__
+
+# from ckanext.announcements import __VERSION__
 
 here = path.abspath(path.dirname(__file__))
 
 # Get the long description from the relevant file
 with open(path.join(here, "README.md"), encoding="utf-8") as f:
     long_description = f.read()
+
+with open(path.join(here, "ckanext/announcements/__init__.py"), encoding="utf-8") as f:
+    init = f.read()
+    for line in init.splitlines():
+        if line.startswith("__VERSION__"):
+            delim = '"' if '"' in line else "'"
+            __VERSION__ = line.split(delim)[1]
+
 
 setup(
     name="""ckanext-announcements""",
