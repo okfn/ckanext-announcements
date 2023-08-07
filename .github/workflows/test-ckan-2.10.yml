@@ -1,4 +1,4 @@
-name: Tests
+name: Tests CKAN 2.10 Python 3.10
 on: [push, pull_request]
 jobs:
   test:
@@ -7,10 +7,10 @@ jobs:
       # The CKAN version tag of the Solr and Postgres containers should match
       # the one of the container the tests run on.
       # You can switch this base image with a custom image tailored to your project
-      image: openknowledge/ckan-dev:2.9
+      image: openknowledge/ckan-dev:2.10.1
     services:
       solr:
-        image: ckan/ckan-solr-dev:2.9
+        image: ckan/ckan-solr:2.10-solr8
       postgres:
         image: ckan/ckan-postgres-dev:2.9
         env:
