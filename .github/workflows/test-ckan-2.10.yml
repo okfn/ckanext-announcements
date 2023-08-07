@@ -38,16 +38,15 @@ jobs:
 
     - name: Black
       run: |
-        pip install black
+        pip install --ignore-installed black
         black . --check --diff
 
     - name: Install requirements
       # Install any extra requirements your extension has here (dev requirements, other extensions etc)
       run: |
-        pip install --upgrade pip
-        python3 setup.py develop
         pip install -r requirements.txt
         pip install -r dev-requirements.txt
+        python3 setup.py develop
 
     - name: Setup extension
       # Extra initialization steps
