@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.0 - 2023-08-08
+New features:
+ - CKAN 2.10 compatibility added.
+
 ## 0.0.4 - 2022-08-02
 New features:
  - Validate announcement forms
