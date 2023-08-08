@@ -7,7 +7,7 @@ from ckanext.announcements.models import Announcement
 
 
 class UserMulti(factories.User):
-    """Multi version of a CKAN user"""
+    """Multi version CKAN user"""
 
     @factory.post_generation
     def token(obj, create, extracted, **kwargs):
