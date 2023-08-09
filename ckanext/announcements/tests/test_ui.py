@@ -1,6 +1,6 @@
 from types import SimpleNamespace
 import pytest
-from ckanext.announcements.tests import factories, helpers
+from ckanext.announcements.tests import factories
 
 
 @pytest.fixture
@@ -17,13 +17,13 @@ def an_data():
 @pytest.mark.usefixtures("clean_db", "announcement_migrate", "with_request_context")
 class TestAnnouncementsUI:
     def test_regular_user(self, app, an_data):
-        environ = helpers.get_user_env(an_data.regular_user)
+        environ = {"Authorization": an_data.regular_user["token"]}
 
         resp = app.get("/ckan-admin/announcements", headers=environ)
         assert resp.status_code == 403
 
     def test_sysadmin_user(self, app, an_data):
-        environ = helpers.get_user_env(an_data.sysadmin)
+        environ = {"Authorization": an_data.sysadmin["token"]}
 
         resp = app.get("/ckan-admin/announcements", headers=environ)
         assert resp.status_code == 200
