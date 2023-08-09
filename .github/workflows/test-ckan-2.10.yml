@@ -44,6 +44,8 @@ jobs:
     - name: Install requirements
       # Install any extra requirements your extension has here (dev requirements, other extensions etc)
       run: |
+        # remove when errors with "packaging" package is fixed
+        pip install setuptools==65.3.0
         pip install -r requirements.txt
         pip install -r dev-requirements.txt
         python3 setup.py develop

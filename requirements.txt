@@ -1,3 +1,1 @@
 ckantoolkit
-# remove when errors with "packaging" package is fixed
-setuptools==65.3.0
