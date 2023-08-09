@@ -6,8 +6,11 @@
       <div class="modal-content">
 
         <form method="POST" action="{% url_for 'announcements.update' %}" class="announcement-form-modal">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+
+          {{ h.csrf_input() if 'csrf_input' in h }}
+
+          <div class="modal-header">
+          <button type="button" class="close" data-bs-dismiss="modal" data-dismiss="modal" aria-hidden="true">×</button>
           <h3>Message details</h3>
         </div>
 

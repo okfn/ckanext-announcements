@@ -11,6 +11,7 @@
     role="button"
     class="btn btn-primary"
     title="Schedule new message"
+    data-bs-toggle="modal"
     data-toggle="modal"
     data-target="#system-message-new"
   >Schedule new message</a>
@@ -33,10 +34,10 @@
       <td>{{ h.render_datetime(message.from_date, with_hours=True) }}</td>
       <td>{{ h.render_datetime(message.to_date, with_hours=True) }}</td>
       <td>
-        <a href="#system-message-edit-{{ message.id }}" role="button" class="btn btn-info announcement-edit-btn" title="edit"   data-toggle="modal" data-target="#system-message-edit-{{ message.id }}">
+        <a href="#system-message-edit-{{ message.id }}" role="button" class="btn btn-info announcement-edit-btn" title="edit" data-bs-toggle="modal" data-toggle="modal" data-target="#system-message-edit-{{ message.id }}">
           <i class="fa fa-edit"></i>
         </a>
-        <a href="#system-message-delete-{{ message.id }}" role="button" class="btn btn-danger announcement-delete-btn" title="delete" data-toggle="modal" data-target="#system-message-delete-{{ message.id }}">
+        <a href="#system-message-delete-{{ message.id }}" role="button" class="btn btn-danger announcement-delete-btn" title="delete" data-bs-toggle="modal" data-toggle="modal" data-target="#system-message-delete-{{ message.id }}">
           <i class="fa fa-trash"></i>
         </a>
       </td>
