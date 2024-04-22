@@ -53,6 +53,9 @@ To install ckanext-announcements:
 `ckanext.announcements.limit_announcements` (default: 50)
 > Limit for the announcement list
 
+`ckan.display_timezone`
+> Start and end dates are displayed in the timezone defined in this CKAN core setting
+
 ## Developer installation
 
 To install ckanext-announcements for development, activate your CKAN virtualenv and

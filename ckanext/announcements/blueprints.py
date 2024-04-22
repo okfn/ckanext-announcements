@@ -1,9 +1,12 @@
 from datetime import datetime
+import logging
+import pytz
 from flask import Blueprint
 from ckan.lib import base
 from ckan.plugins import toolkit
 
 
+log = logging.getLogger(__name__)
 announcements_blueprint = Blueprint(
     "announcements", __name__, url_prefix="/ckan-admin/announcements"
 )
@@ -13,7 +16,29 @@ def index():
     """Get the Announcements home page"""
     if not toolkit.c.userobj.sysadmin:
         base.abort(403, ("Need to be system administrator to administer"))
-    return toolkit.render("admin/announcements.html")
+
+    display_timezone = toolkit.config.get("ckan.display_timezone")
+    pytz_timezones = pytz.all_timezones.copy()
+    # remove CET and UTC to display them first
+    pytz_timezones.remove("CET")
+    pytz_timezones.remove("UTC")
+    ctx = {
+        "display_timezone": display_timezone,
+        "timezones": ["UTC", "CET"] + sorted(pytz_timezones),
+    }
+    return toolkit.render("admin/announcements.html", extra_vars=ctx)
+
+
+def get_dates(form):
+    from_date = form.get("from_date")
+    to_date = form.get("to_date")
+    timezone = form.get("timezone")
+    # apply the selected tuimezone
+    from_date = datetime.strptime(from_date, "%Y-%m-%dT%H:%M")
+    from_date = pytz.timezone(timezone).localize(from_date)
+    to_date = datetime.strptime(to_date, "%Y-%m-%dT%H:%M")
+    to_date = pytz.timezone(timezone).localize(to_date)
+    return from_date, to_date
 
 
 def create():
@@ -21,8 +46,7 @@ def create():
 
     user_obj = toolkit.c.userobj
     user_creator_id = user_obj.id
-    from_date = toolkit.request.form.get("from_date")
-    to_date = toolkit.request.form.get("to_date")
+    from_date, to_date = get_dates(toolkit.request.form)
     message = toolkit.request.form.get("message")
 
     new_announcements_data = {
@@ -50,8 +74,8 @@ def update():
 
     user_obj = toolkit.c.userobj
     announ_id = toolkit.request.form.get("id")
-    from_date = toolkit.request.form.get("from_date")
-    to_date = toolkit.request.form.get("to_date")
+    from_date, to_date = get_dates(toolkit.request.form)
+
     message = toolkit.request.form.get("message")
 
     announcements_data = {

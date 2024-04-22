@@ -1,4 +1,3 @@
-from datetime import datetime
 from ckan import model
 from ckan.plugins import toolkit
 from ckanext.announcements.models import Announcement
@@ -9,8 +8,9 @@ def announcement_create(context, data_dict):
     toolkit.check_access("announcement_create", context, data_dict)
     m = context.get("model", model)
     validate_announcement(data_dict)
-    from_date = datetime.fromisoformat(data_dict.get("from_date"))
-    to_date = datetime.fromisoformat(data_dict.get("to_date"))
+
+    from_date = data_dict.get("from_date")
+    to_date = data_dict.get("to_date")
 
     announcement = Announcement(
         timestamp=data_dict["timestamp"],
@@ -37,8 +37,8 @@ def announcement_update(context, data_dict):
     if not announcement:
         raise toolkit.ObjectNotFound("Announcement not found")
 
-    announcement.from_date = datetime.fromisoformat(data_dict["from_date"])
-    announcement.to_date = datetime.fromisoformat(data_dict["to_date"])
+    announcement.from_date = data_dict["from_date"]
+    announcement.to_date = data_dict["to_date"]
     announcement.message = data_dict["message"]
 
     m.Session.commit()
