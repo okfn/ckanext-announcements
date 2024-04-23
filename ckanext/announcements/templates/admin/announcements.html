@@ -31,8 +31,8 @@
     {% for message in messages %}
     <tr>
       <td>{{ h.render_markdown(message.message) }}</td>
-      <td>{{ h.render_datetime(message.from_date, with_hours=True) }}</td>
-      <td>{{ h.render_datetime(message.to_date, with_hours=True) }}</td>
+      <td>{{ h.render_datetime(message.from_date, with_hours=True) }} ({{ display_timezone }})</td>
+      <td>{{ h.render_datetime(message.to_date, with_hours=True) }} ({{ display_timezone }})</td>
       <td>
         <a href="#system-message-edit-{{ message.id }}" role="button" class="btn btn-info announcement-edit-btn" title="edit" data-bs-toggle="modal" data-toggle="modal" data-target="#system-message-edit-{{ message.id }}">
           <i class="fa fa-edit"></i>
@@ -54,7 +54,7 @@
 
 {% for message in messages %}
 
-{% snippet "admin/snippets/edit-announcement.html", message=message %}
+{% snippet "admin/snippets/edit-announcement.html", message=message, display_timezone=display_timezone, timezones=timezones %}
 {% snippet "admin/snippets/delete-announcement.html", message=message %}
 
 {% endfor %}

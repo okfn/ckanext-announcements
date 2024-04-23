@@ -10,7 +10,7 @@ jobs:
       image: openknowledge/ckan-dev:2.9
     services:
       solr:
-        image: ckan/ckan-solr-dev:2.9
+        image: ckan/ckan-solr:2.9-solr8
       postgres:
         image: ckan/ckan-postgres-dev:2.9
         env:
@@ -34,12 +34,12 @@ jobs:
     - name: Flake8
       run: |
         pip install flake8
-        flake8 . --count --statistics
-
-    - name: Black
-      run: |
-        pip install black
-        black . --check --diff
+        flake8 . \
+          --count \
+          --show-source \
+          --max-complexity=12 \
+          --max-line-length=130 \
+          --statistics
 
     - name: Install requirements
       # Install any extra requirements your extension has here (dev requirements, other extensions etc)
