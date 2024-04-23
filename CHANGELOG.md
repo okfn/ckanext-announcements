@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.1 - 2024-04-23
+
+New features:
+ - Allow to define timezones for announcements [#6](https://github.com/okfn/ckanext-announcements/pull/6)
+ - Update test images for CKAN 2.9
+
 ## 0.1.0 - 2023-08-08
 New features:
  - CKAN 2.10 compatibility added.
