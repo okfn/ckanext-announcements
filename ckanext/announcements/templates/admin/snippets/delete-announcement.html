@@ -17,8 +17,8 @@
           <div style="max-height: 400px; overflow-y: scroll;">
             <h4>Time Period</h4>
             <ul>
-              <li>From: <b>{{ message.from_date.isoformat() }}</b></li>
-              <li>To: <b>{{ message.to_date.isoformat() }}</b></li>
+              <li>From: <b>{{ message.from_date.strftime('%Y-%m-%dT%H:%M:%S') }}</b></li>
+              <li>To: <b>{{ message.to_date.strftime('%Y-%m-%dT%H:%M:%S') }}</b></li>
             </ul>
           </div>
         </div>
