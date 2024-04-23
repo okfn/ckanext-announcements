@@ -68,8 +68,7 @@ do:
 
 ### Activate pre-commits
 
-There are github actions to check code with `flake8` and `black` so
-it will be usefull to activate pre-commits
+There are github actions to check code with `flake8` so it will be usefull to activate pre-commits
 
 ```
 pip install pre-commit

@@ -113,38 +113,7 @@ def delete():
     return toolkit.redirect_to("announcements.index")
 
 
-announcements_blueprint.add_url_rule(
-    rule="/",
-    view_func=index,
-    methods=[
-        "GET",
-    ],
-    strict_slashes=False,
-)
-
-announcements_blueprint.add_url_rule(
-    rule="/new",
-    view_func=create,
-    methods=[
-        "POST",
-    ],
-    strict_slashes=False,
-)
-
-announcements_blueprint.add_url_rule(
-    rule="/update",
-    view_func=update,
-    methods=[
-        "POST",
-    ],
-    strict_slashes=False,
-)
-
-announcements_blueprint.add_url_rule(
-    rule="/delete",
-    view_func=delete,
-    methods=[
-        "POST",
-    ],
-    strict_slashes=False,
-)
+announcements_blueprint.add_url_rule(rule="/", view_func=index, methods=["GET"], strict_slashes=False)
+announcements_blueprint.add_url_rule(rule="/new", view_func=create, methods=["POST"], strict_slashes=False)
+announcements_blueprint.add_url_rule(rule="/update", view_func=update, methods=["POST"], strict_slashes=False)
+announcements_blueprint.add_url_rule(rule="/delete", view_func=delete, methods=["POST"], strict_slashes=False)
