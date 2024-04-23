@@ -17,7 +17,7 @@ def index():
     if not toolkit.c.userobj.sysadmin:
         base.abort(403, ("Need to be system administrator to administer"))
 
-    display_timezone = toolkit.config.get("ckan.display_timezone")
+    display_timezone = toolkit.config.get("ckan.display_timezone", "UTC")
     pytz_timezones = pytz.all_timezones.copy()
     # remove CET and UTC to display them first
     pytz_timezones.remove("CET")

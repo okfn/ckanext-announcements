@@ -40,7 +40,7 @@ def get_all_announcements():
 
 def _apply_tz(messages):
     """Apply the timezone to the messages"""
-    display_timezone = toolkit.config.get("ckan.display_timezone")
+    display_timezone = toolkit.config.get("ckan.display_timezone", "UTC")
     tz = timezone(display_timezone)
     for message in messages:
         message.from_date = message.from_date.astimezone(tz)
