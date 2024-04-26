@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.2 - 2024-04-26
+
+New features:
+ - Hide announcements if users closes them [#7](https://github.com/okfn/ckanext-announcements/pull/7)
+Bug fixes:
+ - Do not send the SQLAlchemy objects to template [#7](https://github.com/okfn/ckanext-announcements/pull/7)
+
 ## 0.1.1 - 2024-04-23
 
 New features:
