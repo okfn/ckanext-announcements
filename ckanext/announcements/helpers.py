@@ -42,7 +42,10 @@ def _apply_tz(messages):
     """Apply the timezone to the messages"""
     display_timezone = toolkit.config.get("ckan.display_timezone", "UTC")
     tz = timezone(display_timezone)
+    # Do not send the SQLAlchemy objects to template, use dictionaries instead
+    dict_messages = []
     for message in messages:
         message.from_date = message.from_date.astimezone(tz)
         message.to_date = message.to_date.astimezone(tz)
-    return messages
+        dict_messages.append(message.dictize())
+    return dict_messages
