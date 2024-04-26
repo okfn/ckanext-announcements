@@ -42,4 +42,4 @@ class TestAnnouncements:
         """Test public messages helper"""
         ga = get_public_announcements()
         assert len(ga) == 1
-        assert ga[0].message == "This should be a public message"
+        assert ga[0]['message'] == "This should be a public message"
