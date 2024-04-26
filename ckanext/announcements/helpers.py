@@ -20,7 +20,7 @@ def get_public_announcements():
         .limit(10)
         .all()
     )
-    messages = _apply_tz(messages)
+    messages = dictize_announ(messages)
     return messages
 
 
@@ -34,15 +34,18 @@ def get_all_announcements():
         .limit(limit)
         .all()
     )
-    messages = _apply_tz(messages)
+    messages = dictize_announ(messages)
     return messages
 
 
-def _apply_tz(messages):
-    """Apply the timezone to the messages"""
+def dictize_announ(messages):
+    """Dictize and improve. Apply the proper timezone to messages"""
     display_timezone = toolkit.config.get("ckan.display_timezone", "UTC")
     tz = timezone(display_timezone)
+    # Do not send the SQLAlchemy objects to template, use dictionaries instead
+    dict_messages = []
     for message in messages:
         message.from_date = message.from_date.astimezone(tz)
         message.to_date = message.to_date.astimezone(tz)
-    return messages
+        dict_messages.append(message.dictize())
+    return dict_messages
