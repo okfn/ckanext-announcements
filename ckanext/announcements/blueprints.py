@@ -14,7 +14,7 @@ announcements_blueprint = Blueprint(
 
 def index():
     """Get the Announcements home page"""
-    if not toolkit.c.userobj.sysadmin:
+    if not toolkit.c.userobj or not toolkit.c.userobj.sysadmin:
         base.abort(403, ("Need to be system administrator to administer"))
 
     display_timezone = toolkit.config.get("ckan.display_timezone", "UTC")

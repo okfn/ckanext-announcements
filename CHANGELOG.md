@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.3 - 2024-04-26
+
+New features:
+
+Bug fixes:
+ - Fix anon visits [#8](https://github.com/okfn/ckanext-announcements/pull/8)
+
 ## 0.1.2 - 2024-04-26
 
 New features:
