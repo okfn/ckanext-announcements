@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.4 - 2025-01-03
+
+New features:
+ - CKAN 2.11 compatibility added.
+
+Bug fixes:
+
 ## 0.1.3 - 2024-04-26
 
 New features:
