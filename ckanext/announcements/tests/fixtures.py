@@ -33,4 +33,5 @@ else:
 
     @pytest.fixture
     def announcement_migrate(migrate_db_for):
-        migrate_db_for('announcements')
+        # migrate_db_for('announcements')
+        pass
