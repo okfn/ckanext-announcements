@@ -2,11 +2,12 @@ import contextlib
 import pytest
 
 from ckan.plugins import toolkit
-from ckan.cli.db import _resolve_alembic_config
-import ckan.model as model
 
 
 if toolkit.check_ckan_version(max_version='2.10'):
+
+    from ckan.cli.db import _resolve_alembic_config
+    import ckan.model as model
 
     # TODO: in the next CKAN release
     # there will be a more elegant way to achieve this
