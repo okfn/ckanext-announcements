@@ -26,4 +26,4 @@ class TestAnnouncementsUI:
         environ = {"Authorization": an_data.sysadmin["token"]}
 
         resp = app.get("/ckan-admin/announcements", headers=environ)
-        assert resp.status_code == 200
+        assert resp.status_code == 200, f'Expected 200, got {resp.status_code}\n\t{environ}\n\t{resp.body}\n\t{an_data.sysadmin}'
