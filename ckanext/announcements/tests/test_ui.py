@@ -7,7 +7,7 @@ from ckanext.announcements.tests import factories
 def an_data():
     """test setup data"""
     obj = SimpleNamespace()
-    # Create CKAN 2.9/2.10 users
+    # Create CKAN users
     obj.regular_user = factories.UserMulti()
     obj.sysadmin = factories.SysadminUserMulti()
 

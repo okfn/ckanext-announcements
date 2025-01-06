@@ -2,8 +2,8 @@ from datetime import datetime
 import logging
 import pytz
 from flask import Blueprint
-from ckan.lib import base
 from ckan.plugins import toolkit
+from ckanext.announcements.utils import require_sysadmin_user
 
 
 log = logging.getLogger(__name__)
@@ -12,11 +12,9 @@ announcements_blueprint = Blueprint(
 )
 
 
+@require_sysadmin_user
 def index():
     """Get the Announcements home page"""
-    if not toolkit.c.userobj or not toolkit.c.userobj.sysadmin:
-        base.abort(403, ("Need to be system administrator to administer"))
-
     display_timezone = toolkit.config.get("ckan.display_timezone", "UTC")
     pytz_timezones = pytz.all_timezones.copy()
     # remove CET and UTC to display them first
