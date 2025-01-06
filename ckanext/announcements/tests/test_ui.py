@@ -1,5 +1,6 @@
 from types import SimpleNamespace
 import pytest
+from ckan.plugins import toolkit
 from ckanext.announcements.tests import factories
 
 
@@ -26,4 +27,9 @@ class TestAnnouncementsUI:
         environ = {"Authorization": an_data.sysadmin["token"]}
 
         resp = app.get("/ckan-admin/announcements", headers=environ)
-        assert resp.status_code == 200, f'Expected 200, got {resp.status_code}\n\t{environ}\n\t{resp.body}\n\t{an_data.sysadmin}'
+        athn = toolkit.config.get("apitoken_header_name")
+        err = (
+            f'Expected 200, got {resp.status_code}\n\t{athn}'
+            f'\n\t{environ}\n\t{resp.body}\n\t{an_data.sysadmin}'
+        )
+        assert resp.status_code == 200, err
