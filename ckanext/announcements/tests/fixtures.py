@@ -4,7 +4,7 @@ import pytest
 from ckan.plugins import toolkit
 
 
-if toolkit.check_ckan_version(max_version='2.10'):
+if toolkit.check_ckan_version(max_version='2.11'):
 
     from ckan.cli.db import _resolve_alembic_config
     import ckan.model as model
@@ -33,5 +33,4 @@ else:
 
     @pytest.fixture
     def announcement_migrate(migrate_db_for):
-        # migrate_db_for('announcements')
-        pass
+        migrate_db_for('announcements')
