@@ -14,7 +14,7 @@ def an_data():
     return obj
 
 
-@pytest.mark.usefixtures("clean_db", "announcement_migrate", "with_request_context")
+@pytest.mark.usefixtures("with_plugins", "clean_db", "announcement_migrate", "with_request_context")
 class TestAnnouncementsUI:
     def test_regular_user(self, app, an_data):
         environ = {"Authorization": an_data.regular_user["token"]}

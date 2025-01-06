@@ -3,7 +3,7 @@ import pytest
 from ckan.plugins import toolkit
 
 
-if toolkit.check_ckan_version(max_version='2.12'):
+if toolkit.check_ckan_version(max_version='2.11'):
 
     import contextlib
     from ckan.cli.db import _resolve_alembic_config
