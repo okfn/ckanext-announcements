@@ -1,6 +1,5 @@
 from types import SimpleNamespace
 import pytest
-from ckan.plugins import toolkit
 from ckanext.announcements.tests import factories
 
 
@@ -15,7 +14,7 @@ def an_data():
     return obj
 
 
-@pytest.mark.usefixtures("with_plugins", "clean_db", "announcement_migrate", "with_request_context")
+@pytest.mark.usefixtures("with_plugins", "clean_db", "announcement_migrate")
 class TestAnnouncementsUI:
     def test_regular_user(self, app, an_data):
         environ = {"Authorization": an_data.regular_user["token"]}
@@ -27,9 +26,4 @@ class TestAnnouncementsUI:
         environ = {"Authorization": an_data.sysadmin["token"]}
 
         resp = app.get("/ckan-admin/announcements", headers=environ)
-        athn = toolkit.config.get("apitoken_header_name")
-        err = (
-            f'Expected 200, got {resp.status_code}\n\t{athn}'
-            f'\n\t{environ}\n\t{resp.body}\n\t{an_data.sysadmin}'
-        )
-        assert resp.status_code == 200, err
+        assert resp.status_code == 200
