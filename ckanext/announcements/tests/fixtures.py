@@ -3,14 +3,20 @@ import pytest
 from ckan.plugins import toolkit
 
 
-if toolkit.check_ckan_version(max_version='2.11'):
+@pytest.fixture
+def clean_db(reset_db, migrate_db_for):
+    reset_db()
+    if toolkit.check_ckan_version(min_version='2.11'):
+        migrate_db_for("announcements")
+    else:
+        migrate_old()
 
+
+def migrate_old():
     import contextlib
     from ckan.cli.db import _resolve_alembic_config
     import ckan.model as model
 
-    # TODO: in the next CKAN release
-    # there will be a more elegant way to achieve this
     @contextlib.contextmanager
     def _repo_for_plugin(plugin):
         original = model.repo._alembic_ini
@@ -24,13 +30,4 @@ if toolkit.check_ckan_version(max_version='2.11'):
         with _repo_for_plugin("announcements") as repo:
             repo.upgrade_db("head")
 
-    @pytest.fixture
-    def announcement_migrate():
-
-        _apply_alembic_migrations()
-
-else:
-
-    @pytest.fixture
-    def announcement_migrate(migrate_db_for):
-        migrate_db_for('announcements')
+    _apply_alembic_migrations()

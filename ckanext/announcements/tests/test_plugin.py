@@ -26,7 +26,7 @@ def an_data():
     return obj
 
 
-@pytest.mark.usefixtures("with_plugins", "clean_db", "announcement_migrate")
+@pytest.mark.usefixtures("with_plugins", "clean_db")
 class TestAnnouncements:
     def test_announcement_saved(self, an_data):
         """Test single announcement saved correctly"""
