@@ -7,14 +7,14 @@ from ckanext.announcements.tests import factories
 def an_data():
     """test setup data"""
     obj = SimpleNamespace()
-    # Create CKAN 2.9/2.10 users
+    # Create CKAN users
     obj.regular_user = factories.UserMulti()
     obj.sysadmin = factories.SysadminUserMulti()
 
     return obj
 
 
-@pytest.mark.usefixtures("clean_db", "announcement_migrate", "with_request_context")
+@pytest.mark.usefixtures("with_plugins", "clean_db")
 class TestAnnouncementsUI:
     def test_regular_user(self, app, an_data):
         environ = {"Authorization": an_data.regular_user["token"]}

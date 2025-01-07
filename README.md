@@ -19,6 +19,7 @@ Compatibility with core CKAN versions:
 | 2.9 (py2)       | no            |
 | 2.9 (py3)       | yes           |
 | 2.10            | yes           |
+| 2.11            | yes           |
 
 ## Installation
 
