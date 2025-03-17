@@ -46,10 +46,7 @@
   </tbody>
 </table>
 </div>
-{% endblock %}
 
-{% block body_extras %}
-{{ super() }}
 {% include "admin/snippets/new-announcement.html" %}
 
 {% for message in messages %}
