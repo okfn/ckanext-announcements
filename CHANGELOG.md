@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.5 - 2025-01-03
+
+New features:
+
+Bug fixes:
+ - Fix template after change in CKAN 2.11 [#10](https://github.com/okfn/ckanext-announcements/pull/10)
+
 ## 0.1.4 - 2025-01-03
 
 New features:
