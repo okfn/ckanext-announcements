@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.6 - 2025-05-09
+
+New features:
+ - Drop old bootstrap classes [#11](https://github.com/okfn/ckanext-announcements/pull/11)
+ - Drop CKAN 2.9 compatibility [#11](https://github.com/okfn/ckanext-announcements/pull/11)
+
 ## 0.1.5 - 2025-01-03
 
 New features:

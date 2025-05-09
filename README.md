@@ -1,5 +1,5 @@
-[![CKAN 2.10 Python 3.10](https://github.com/okfn/ckanext-announcements/actions/workflows/test-ckan-2.10.yml/badge.svg)](https://github.com/okfn/ckanext-announcements/actions/workflows/test-ckan-2.10.yml)
-[![CKAN 2.9 Python 3.8](https://github.com/okfn/ckanext-announcements/actions/workflows/test-ckan-2.9.yml/badge.svg)](https://github.com/okfn/ckanext-announcements/actions/workflows/test-ckan-2.9.yml)
+[![CKAN 2.11](https://github.com/okfn/ckanext-announcements/actions/workflows/test-ckan-2.11.yml/badge.svg)](https://github.com/okfn/ckanext-announcements/actions/workflows/test-ckan-2.11.yml)
+[![CKAN 2.10](https://github.com/okfn/ckanext-announcements/actions/workflows/test-ckan-2.10.yml/badge.svg)](https://github.com/okfn/ckanext-announcements/actions/workflows/test-ckan-2.10.yml)
 
 # ckanext-announcements
 
@@ -13,13 +13,13 @@ Compatibility with core CKAN versions:
 
 `ckanext-announcements` only works with Python 3
 
-| CKAN version    | Compatible?   |
-| --------------- | ------------- |
-| 2.8             | no            |
-| 2.9 (py2)       | no            |
-| 2.9 (py3)       | yes           |
-| 2.10            | yes           |
-| 2.11            | yes           |
+| CKAN version    | Compatible?          |
+| --------------- | -------------------- |
+| 2.8             | no                   |
+| 2.9 (py2)       | no                   |
+| 2.9 (py3)       | deprecated on 0.1.6  |
+| 2.10            | yes                  |
+| 2.11            | yes                  |
 
 ## Installation
 

@@ -1,7 +1,7 @@
 <div class="announcements-container container">
     {% for announcement in h.get_public_announcements() %}
         <div class="alert alert-warning alert-dismissible announcement" data-announcement-id="{{ announcement.id }}" role="alert" >
-           <button type="button" class="close announcement-close-button" data-announcement-id="{{ announcement.id }}" data-bs-dismiss="alert" data-dismiss="alert" aria-label="Close">
+           <button type="button" class="close announcement-close-button" data-announcement-id="{{ announcement.id }}" data-bs-dismiss="alert" aria-label="Close">
 			    <span aria-hidden="true">&times;</span>
 			  </button>
 

@@ -12,7 +12,7 @@ jobs:
       solr:
         image: ckan/ckan-solr:2.10-solr8
       postgres:
-        image: ckan/ckan-postgres-dev:2.9
+        image: ckan/ckan-postgres-dev:2.10
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres

@@ -37,3 +37,9 @@ Private
     padding: 7px;
     margin: 7px;
 }
+
+/* We don't expect to need this */
+.modal-backdrop {
+  z-index: 0 !important;
+  background-color: #00000000;
+}
