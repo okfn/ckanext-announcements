@@ -18,14 +18,20 @@ $( document ).ready(function() {
 
         if (errors.length > 0) {
             e.preventDefault(); //prevent the default action
-            $('.announcement-form-error').html(errors.join('<br/>'));
+            $('.announcement-form-error').html('<strong>Please fix the following errors:</strong><ul><li>' + errors.join('</li><li>') + '</li></ul>');
             $('.announcement-form-error').show();
+            // Scroll to error message
+            $('.modal-body').animate({
+                scrollTop: $('.announcement-form-error').position().top
+            }, 500);
         }
     });
 
     // hide error div on modal hide to start fresh next time
     $('.announcement-form-modal').on('hide.bs.modal', function () {
         $('.announcement-form-error').hide();
+        // Reset any custom styling
+        $('.modal-dialog').css('overflow-y', '');
     });
 
     // add a cookie to remember if user closed any announcement
