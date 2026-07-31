@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.7 - 2026-07-31
+
+New features:
+ - Prepare for SQLAlchemy 2 [#12](https://github.com/okfn/ckanext-announcements/pull/12)
+
 ## 0.1.6 - 2025-05-09
 
 New features:
