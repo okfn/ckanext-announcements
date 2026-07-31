@@ -3,7 +3,7 @@ import logging
 
 from sqlalchemy import Column, DateTime
 from sqlalchemy.dialects.postgresql import JSONB
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import declarative_base
 from sqlalchemy.ext.mutable import MutableDict
 from sqlalchemy.types import Enum, UnicodeText
 
