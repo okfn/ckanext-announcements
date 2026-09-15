@@ -6,7 +6,7 @@
       <div class="modal-content">
         <form method="POST" action="{% url_for 'announcements.create' %}" class="announcement-form-modal">
 
-        {{ h.csrf_input() if 'csrf_input' in h }}
+        {{ h.csrf_input() }}
 
         <div class="modal-header">
           <h5 class="modal-title" id="systemMessageNewLabel">New Announcement</h5>

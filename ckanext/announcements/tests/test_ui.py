@@ -1,6 +1,9 @@
 from types import SimpleNamespace
 import pytest
+from ckan.plugins import toolkit
+from ckanext.announcements import auth
 from ckanext.announcements.tests import factories
+from ckanext.announcements.blueprints import get_dates
 
 
 @pytest.fixture
@@ -27,3 +30,21 @@ class TestAnnouncementsUI:
 
         resp = app.get("/ckan-admin/announcements", headers=environ)
         assert resp.status_code == 200
+        assert 'name="_csrf_token"' in resp.text
+
+    def test_invalid_timezone_is_validation_error(self):
+        with pytest.raises(toolkit.ValidationError) as error:
+            get_dates(
+                {
+                    "from_date": "2026-09-15T10:00",
+                    "to_date": "2026-09-15T11:00",
+                    "timezone": "Not/A_Timezone",
+                }
+            )
+
+        assert "date" in error.value.error_dict
+
+    def test_anonymous_user_is_not_authorized(self):
+        result = auth.announcement_create({"auth_user_obj": None}, {})
+
+        assert result == {"success": False}

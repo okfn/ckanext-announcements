@@ -9,5 +9,11 @@ def validate_announcement(data_dict):
         errors["to_date"] = ["'To date' is required"]
     if not data_dict.get("message"):
         errors["message"] = ["A 'Message' is required"]
+    if (
+        data_dict.get("from_date")
+        and data_dict.get("to_date")
+        and data_dict["to_date"] <= data_dict["from_date"]
+    ):
+        errors["to_date"] = ["'To date' must be later than 'From date'"]
     if errors:
         raise toolkit.ValidationError(errors)

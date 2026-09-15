@@ -1,6 +1,7 @@
 from ckanext.announcements import actions, auth, blueprints, helpers
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
+from ckan.config.declaration import Declaration, Key
 
 
 class announcementsPlugin(plugins.SingletonPlugin):
@@ -9,6 +10,7 @@ class announcementsPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IBlueprint)
     plugins.implements(plugins.IAuthFunctions)
     plugins.implements(plugins.IActions)
+    plugins.implements(plugins.IConfigDeclaration)
 
     # IConfigurer
 
@@ -16,6 +18,16 @@ class announcementsPlugin(plugins.SingletonPlugin):
         toolkit.add_template_directory(config_, "templates")
         toolkit.add_public_directory(config_, "public")
         toolkit.add_resource("assets", "announcements")
+
+    # IConfigDeclaration
+
+    def declare_config_options(self, declaration: Declaration, key: Key):
+        declaration.annotate("ckanext-announcements settings")
+        declaration.declare(
+            key.ckanext.announcements.limit_announcements, 50
+        ).set_validators("convert_int").set_description(
+            "Maximum number of announcements shown in the admin list"
+        )
 
     # ITemplateHelpers
 

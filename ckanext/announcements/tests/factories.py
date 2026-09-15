@@ -32,8 +32,9 @@ class Announcement(factory.Factory):
     class Meta:
         model = Announcement
 
-    _user = helpers.call_action("get_site_user")
-    user_creator_id = _user["name"]
+    user_creator_id = factory.LazyFunction(
+        lambda: helpers.call_action("get_site_user")["id"]
+    )
     from_date = datetime.datetime.now() + datetime.timedelta(days=3)
     to_date = datetime.datetime.now() + datetime.timedelta(days=7)
     message = "This is an announcement message"
