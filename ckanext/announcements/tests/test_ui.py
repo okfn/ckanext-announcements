@@ -30,7 +30,7 @@ class TestAnnouncementsUI:
 
         resp = app.get("/ckan-admin/announcements", headers=environ)
         assert resp.status_code == 200
-        assert 'name="_csrf_token"' in resp.text
+        assert 'name="_csrf_token"' in resp.get_data(as_text=True)
 
     def test_invalid_timezone_is_validation_error(self):
         with pytest.raises(toolkit.ValidationError) as error:

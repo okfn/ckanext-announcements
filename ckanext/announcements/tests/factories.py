@@ -33,7 +33,7 @@ class Announcement(factory.Factory):
         model = Announcement
 
     user_creator_id = factory.LazyFunction(
-        lambda: helpers.call_action("get_site_user")["id"]
+        lambda: helpers.call_action("get_site_user")["name"]
     )
     from_date = datetime.datetime.now() + datetime.timedelta(days=3)
     to_date = datetime.datetime.now() + datetime.timedelta(days=7)
