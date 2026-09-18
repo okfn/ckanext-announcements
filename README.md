@@ -1,6 +1,5 @@
 [![CKAN 2.11](https://github.com/okfn/ckanext-announcements/actions/workflows/test-ckan-2.11.yml/badge.svg)](https://github.com/okfn/ckanext-announcements/actions/workflows/test-ckan-2.11.yml)
 [![CKAN 2.12](https://github.com/okfn/ckanext-announcements/actions/workflows/test-ckan-2.12.yml/badge.svg)](https://github.com/okfn/ckanext-announcements/actions/workflows/test-ckan-2.12.yml)
-[![CKAN 2.10](https://github.com/okfn/ckanext-announcements/actions/workflows/test-ckan-2.10.yml/badge.svg)](https://github.com/okfn/ckanext-announcements/actions/workflows/test-ckan-2.10.yml)
 
 # ckanext-announcements
 
@@ -19,7 +18,7 @@ Compatibility with core CKAN versions:
 | 2.8             | no                   |
 | 2.9 (py2)       | no                   |
 | 2.9 (py3)       | deprecated on 0.1.6  |
-| 2.10            | yes                  |
+| 2.10            | until 0.1.7          |
 | 2.11            | yes                  |
 | 2.12            | yes                  |
 

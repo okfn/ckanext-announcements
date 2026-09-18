@@ -1,8 +1,8 @@
 from types import SimpleNamespace
 import pytest
 from ckan.plugins import toolkit
+from ckan.tests import factories as ckan_factories
 from ckanext.announcements import auth
-from ckanext.announcements.tests import factories
 from ckanext.announcements.blueprints import get_dates
 
 
@@ -11,8 +11,8 @@ def an_data():
     """test setup data"""
     obj = SimpleNamespace()
     # Create CKAN users
-    obj.regular_user = factories.UserMulti()
-    obj.sysadmin = factories.SysadminUserMulti()
+    obj.regular_user = ckan_factories.UserWithToken()
+    obj.sysadmin = ckan_factories.SysadminWithToken()
 
     return obj
 
