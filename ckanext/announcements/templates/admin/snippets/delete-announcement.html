@@ -4,7 +4,7 @@
       <div class="modal-content">
         <form method="POST" action="{% url_for 'announcements.delete' %}">
 
-        {{ h.csrf_input() if 'csrf_input' in h }}
+        {{ h.csrf_input() }}
 
         <div class="modal-header">
           <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">×</button>

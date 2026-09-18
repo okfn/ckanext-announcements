@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.1.8 - 2026-09-15
+
+New features:
+ - Add CKAN 2.12 compatibility and CI coverage.
+ - Declare the extension configuration and supported Python versions.
+
+Bug fixes:
+ - Use CKAN's shared SQLAlchemy model base and SQLAlchemy 2 session APIs.
+ - Enforce CSRF protection on all forms.
+ - Validate date ranges, timezones, and anonymous authorization safely.
+ - Avoid mutating ORM objects while rendering dates in another timezone.
+
 ## 0.1.7 - 2026-07-31
 
 New features:

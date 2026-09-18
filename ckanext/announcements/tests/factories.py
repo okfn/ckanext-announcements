@@ -1,39 +1,17 @@
 import datetime
 import factory
 from ckan import model
-from ckantoolkit import check_ckan_version
-from ckantoolkit.tests import factories, helpers
+from ckan.tests import helpers
 from ckanext.announcements.models import Announcement
-
-
-class UserMulti(factories.User):
-    """Multi version CKAN user"""
-
-    @factory.post_generation
-    def token(obj, create, extracted, **kwargs):
-        if not create:
-            return
-        if check_ckan_version(min_version="2.10"):
-            api_token = factories.APIToken(
-                user=obj["id"],
-                expires_in=30,
-                unit=4,
-            )
-            obj["token"] = api_token["token"]
-        else:
-            obj["token"] = obj["apikey"]
-
-
-class SysadminUserMulti(UserMulti):
-    sysadmin = True
 
 
 class Announcement(factory.Factory):
     class Meta:
         model = Announcement
 
-    _user = helpers.call_action("get_site_user")
-    user_creator_id = _user["name"]
+    user_creator_id = factory.LazyFunction(
+        lambda: helpers.call_action("get_site_user")["name"]
+    )
     from_date = datetime.datetime.now() + datetime.timedelta(days=3)
     to_date = datetime.datetime.now() + datetime.timedelta(days=7)
     message = "This is an announcement message"

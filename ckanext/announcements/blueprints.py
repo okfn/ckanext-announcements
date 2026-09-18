@@ -31,11 +31,18 @@ def get_dates(form):
     from_date = form.get("from_date")
     to_date = form.get("to_date")
     timezone = form.get("timezone")
-    # apply the selected tuimezone
-    from_date = datetime.strptime(from_date, "%Y-%m-%dT%H:%M")
-    from_date = pytz.timezone(timezone).localize(from_date)
-    to_date = datetime.strptime(to_date, "%Y-%m-%dT%H:%M")
-    to_date = pytz.timezone(timezone).localize(to_date)
+    try:
+        selected_timezone = pytz.timezone(timezone)
+        from_date = selected_timezone.localize(
+            datetime.strptime(from_date, "%Y-%m-%dT%H:%M"), is_dst=None
+        )
+        to_date = selected_timezone.localize(
+            datetime.strptime(to_date, "%Y-%m-%dT%H:%M"), is_dst=None
+        )
+    except (TypeError, ValueError, pytz.exceptions.Error):
+        raise toolkit.ValidationError(
+            {"date": ["Dates and timezone must contain valid values"]}
+        )
     return from_date, to_date
 
 
@@ -44,23 +51,21 @@ def create():
 
     user_obj = toolkit.c.userobj
     user_creator_id = user_obj.id
-    from_date, to_date = get_dates(toolkit.request.form)
-    message = toolkit.request.form.get("message")
-
-    new_announcements_data = {
-        "timestamp": datetime.now(),
-        "user_creator_id": user_creator_id,
-        "from_date": from_date,
-        "to_date": to_date,
-        "message": message,
-        "status": "active",
-    }
     try:
+        from_date, to_date = get_dates(toolkit.request.form)
+        new_announcements_data = {
+            "timestamp": datetime.utcnow(),
+            "user_creator_id": user_creator_id,
+            "from_date": from_date,
+            "to_date": to_date,
+            "message": toolkit.request.form.get("message"),
+            "status": "active",
+        }
         toolkit.get_action("announcement_create")(
             {"user": user_obj.name}, new_announcements_data
         )
     except toolkit.ValidationError as e:
-        summary = ", ".join([v[0] for k, v in e.error_dict.items()])
+        summary = ", ".join(v[0] for v in e.error_dict.values())
         message = "Error creating new announcement: {}.".format(summary)
         toolkit.h.flash_error(message)
 
@@ -72,17 +77,14 @@ def update():
 
     user_obj = toolkit.c.userobj
     announ_id = toolkit.request.form.get("id")
-    from_date, to_date = get_dates(toolkit.request.form)
-
-    message = toolkit.request.form.get("message")
-
-    announcements_data = {
-        "id": announ_id,
-        "from_date": from_date,
-        "to_date": to_date,
-        "message": message,
-    }
     try:
+        from_date, to_date = get_dates(toolkit.request.form)
+        announcements_data = {
+            "id": announ_id,
+            "from_date": from_date,
+            "to_date": to_date,
+            "message": toolkit.request.form.get("message"),
+        }
         toolkit.get_action("announcement_update")(
             {"user": user_obj.name}, announcements_data
         )

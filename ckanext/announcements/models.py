@@ -1,21 +1,15 @@
 import datetime
-import logging
 
 from sqlalchemy import Column, DateTime
 from sqlalchemy.dialects.postgresql import JSONB
-from sqlalchemy.orm import declarative_base
 from sqlalchemy.ext.mutable import MutableDict
 from sqlalchemy.types import Enum, UnicodeText
 
-from ckan.model.meta import metadata
 from ckan.model.types import make_uuid
+from ckan.plugins import toolkit
 
 
-log = logging.getLogger(__name__)
-Base = declarative_base(metadata=metadata)
-
-
-class Announcement(Base):
+class Announcement(toolkit.BaseModel):
     __tablename__ = "announcements"
 
     id = Column(UnicodeText, primary_key=True, default=make_uuid)
